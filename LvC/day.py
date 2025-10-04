@@ -1,40 +1,12 @@
-def DayoftheYear(tY,tM,tD):
-    if tM == 1:
-        return tD
-    elif tM == 2:
-        return 31 + tD
-    else:
-        IsLY = False
-        if tY % 4 == 0:
-            if tY % 100 != 0:
-                IsLY = True
-            if tY % 400 == 0:
-                IsLY = True
-        dls = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-        if IsLY:
-            dls[2] = 29
-        CT = tD
-        for m in range(1,tM):
-            CT += dls[m]
-        return CT
-        
+import datetime
 
-
-n = eval(input())
+n = int(input())
 for i in range(n):
-    ls = input().split(' ')
-    y =int(ls[0])
-    m =int(ls[1])
-    d =int(ls[2])
-    # 2000 1 1 >> day1 >> week1
-    # 2000 1 3 >> day3 >> week3
-    CT = DayoftheYear(y,m,d)
-    if y > 2000:
-        for Y in range(2000,y):
-            CT += DayoftheYear(y,12,31)
-    CT += 5
-    w = CT % 7
-    if w == 0:
-        print(7)
-    else:
-        print(w)
+    y, m, d = map(int, input().split())
+    # 建立日期物件
+    date = datetime.date(y, m, d)
+    base = datetime.date(2000, 1, 1)  # 基準日
+    
+    days = (date - base).days + 1     # 計算相差天數 (含當天)
+    week = (days + 4) % 7 + 1         # 2000/1/1 是星期六 → 對應 week=6
+    print(week)
