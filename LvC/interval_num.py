@@ -1,26 +1,22 @@
+def NoDS(X):
+    LS = []
+    for x in X:
+        if x not in LS:
+            LS.append(x)
+    return len(LS)
+
 n = eval(input())
 for i in range(n):
-    num = input().strip()   
-    if 1000 <= int(num) <= 9999:
-        # 檢查不同數字的數量
-        if len(set(num)) == 2:
-            # 檢查是否有連續相同的數字
-            has_repeat = False
-            for j in range(1, len(num)):
-                if num[j] == num[j-1]:
-                    has_repeat = True
-                    break
-
-            if not has_repeat:
-                # 檢查至少有一個數字出現兩次以上
-                d1, d2 = set(num)  # 拆出兩個不同的數字
-                if num.count(d1) >= 2 or num.count(d2) >= 2:
-                    print("Yes")
-                else:
-                    print("No")
-            else:
-                print("No")
-        else:
-            print("No")
+    S = input()
+    Key1 = False
+    Key2 = False
+    if NoDS(S) == 2:
+        Key1 = True
+    
+    if S[0] != S[1] and S[1] != S[2] and S[2] != S[3]:
+        Key2 = True
+    
+    if Key1 and Key2:
+        print("Yes")
     else:
         print("No")

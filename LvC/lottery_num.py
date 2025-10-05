@@ -1,7 +1,13 @@
 n = eval(input())
 for i in range(n):
-    num = list(map(int, input().split()))
-    if len(num) == 7 and all(1 <= x <= 49 for x in num) and len(set(num)) == 7:
+    num = input().split(' ')
+    LS = []
+    for num2 in num:
+        x = int(num2)
+        if (x >= 1 and x <= 49) and x not in LS:
+            LS.append(x)
+        else:
+            print("No")
+            break
+    if len(LS) == 7:
         print("Yes")
-    else:
-        print("No")
